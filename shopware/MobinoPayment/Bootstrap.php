@@ -153,7 +153,7 @@ class Shopware_Plugins_Frontend_MobinoPayment_Bootstrap extends Shopware_Compone
                     'additionalDescription' =>
                         '<img src="http://o08.net/apk/logo-mobino-rgbs.png"/>' .
                         '<div id="payment_desc">
-                            The safest and fastest way to pay. install it on your smartphone here: <a href=src="install.mobino.com">install.mobino.com</a>
+                            The safest and fastest way to pay. install it on your smartphone here: http://install.mobino.com
                         </div>'
                 )
             );
@@ -193,7 +193,7 @@ class Shopware_Plugins_Frontend_MobinoPayment_Bootstrap extends Shopware_Compone
     private function _createEvents()
     {
         try {
-            $this->subscribeEvent('Enlight_Controller_Dispatcher_ControllerPath_Frontend_PaymentMobino', 'onGetControllerPath');
+            $this->subscribeEvent('Enlight_Controller_Dispatcher_ControllerPath_Frontend_Mobino', 'onGetControllerPath');
         }
         catch (Exception $exception) {
             Shopware()->Log()->Err("There was an error registering the plugins events. " . $exception->getMessage());
