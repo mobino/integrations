@@ -26,7 +26,7 @@
  * @subpackage Mobino
  * @author     Mobino
  */
-class Shopware_Controllers_Frontend_PaymentMobino extends Shopware_Controllers_Frontend_Payment
+class Shopware_Controllers_Frontend_Mobino extends Shopware_Controllers_Frontend_Payment
 {
     const USER_AGENT = 'mobino-php/1.0.0';
     public static $lastRawResponse;
@@ -43,13 +43,13 @@ class Shopware_Controllers_Frontend_PaymentMobino extends Shopware_Controllers_F
     public function indexAction()
     {
         if (Shopware()->Session()->token_requested == false) {
-            return $this->redirect(array('action' => 'gateway', 'forceSecure' => true));
+            return $this->redirect(array('action' => 'gateway'));
         }
         else {
             if (array_values($this->checkRefNum())[0]['reference_number'] == $refnum) {
-                return $this->redirect(array('action' => 'gateway', 'forceSecure' => true));
+                return $this->redirect(array('action' => 'gateway'));
             }
-            return $this->redirect(array('action' => 'result', 'forceSecure' => false));
+            return $this->redirect(array('action' => 'result'));
         }
     }
 
@@ -63,7 +63,7 @@ class Shopware_Controllers_Frontend_PaymentMobino extends Shopware_Controllers_F
             $errorMessage = 1;
         }
 
-        $this->redirect(array("controller"   => "checkout", "action" => "confirm", "forceSecure" => 1,
+        $this->redirect(array("controller"   => "checkout", "action" => "confirm",
                               "errorMessage" => $errorMessage));
     }
 
@@ -83,11 +83,6 @@ class Shopware_Controllers_Frontend_PaymentMobino extends Shopware_Controllers_F
 
     public function gatewayAction()
     {
-        $router = $this->Front()->Router();
-        $params['returnUrl'] = $router->assemble(array('action' => 'return', 'forceSecure' => true));
-        $params['cancelUrl'] = $router->assemble(array('action' => 'cancel', 'forceSecure' => true));
-        $params['notifyUrl'] = $router->assemble(array('action' => 'notify', 'forceSecure' => true, 'appendSession' => true));
- 
         $apikey = trim($this->config->get("apikey"));
         $apisecret = trim($this->config->get("apisecret"));
 
@@ -239,5 +234,4 @@ class Shopware_Controllers_Frontend_PaymentMobino extends Shopware_Controllers_F
             'body' => $responseBody
         );
     }
-
 }

@@ -148,12 +148,10 @@ class Shopware_Plugins_Frontend_MobinoPayment_Bootstrap extends Shopware_Compone
                 array(
                     'active' => 1,
                     'name' => 'mobino',
-                    'action' => 'payment_mobino',
-                    'template' => 'mobino.tpl',
+                    'action' => 'mobino',
                     'description' => 'Mobino',
                     'additionalDescription' =>
-                        '<img src="http://o08.net/apk/logo-mobino-rgbs.png"/>
-                        <br/><br/>' .
+                        '<img src="http://o08.net/apk/logo-mobino-rgbs.png"/>' .
                         '<div id="payment_desc">
                             The safest and fastest way to pay. install it on your smartphone here: <a href=src="install.mobino.com">install.mobino.com</a>
                         </div>'
